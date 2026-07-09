@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Симулятор Кейсов и Апгрейдер со Звуком</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">CAS-BATTLE-Владика</div>
+        <div class="balance">Баланс: <span id="balance-val">1000</span> $</div>
+    </header>
+
+    <main>
+        <!-- Переключатель кейсов -->
+        <div class="case-selector">
+            <button class="case-tab active" id="btn-case-free">Бесплатный кейс</button>
+            <button class="case-tab" id="btn-case-paid">Платный кейс (50$)</button>
+            <button class="case-tab" id="btn-case-knives">Кейс с ножами (150$)</button>
+            <button class="case-tab" id="btn-case-gloves">Кейс с перчатками (200$)</button>
+        </div>
+
+        <!-- Контейнер с крутящейся рулеткой -->
+        <div class="case-container">
+            <h2 id="case-title">Оружейный кейс (Бесплатно)</h2>
+            <div class="roulette-wrapper">
+                <div class="selector"></div> <!-- Красная линия по центру -->
+                <div class="roulette" id="roulette"></div>
+            </div>
+            <div class="quantity-selector" id="quantity-selector">
+                <button class="qty-btn active" data-qty="1">1x</button>
+                <button class="qty-btn" data-qty="2">2x</button>
+                <button class="qty-btn" data-qty="3">3x</button>
+                <button class="qty-btn" data-qty="4">4x</button>
+                <button class="qty-btn" data-qty="5">5x</button>
+            </div>
+            <button id="spin-btn">Открыть кейс</button>
+        </div>
+
+        <!-- Раздел Апгрейдера -->
+        <div class="upgrade-container">
+            <h2>Апгрейдер скинов</h2>
+            <p class="upgrade-hint">Выберите скин в инвентаре ниже, затем выберите множитель:</p>
+            
+            <div class="upgrade-workspace">
+                <!-- Слот для выбранного скина -->
+                <div class="upgrade-slot" id="selected-skin-slot">
+                    <div class="slot-placeholder">Выберите скин из инвентаря</div>
+                </div>
+
+                <!-- Колесо апгрейда -->
+                <div class="upgrade-wheel-wrapper">
+                    <svg class="progress-ring" width="160" height="160">
+                        <circle class="progress-ring__background" stroke="#111116" stroke-width="10" fill="transparent" r="70" cx="80" cy="80"/>
+                        <circle class="progress-ring__circle" id="upgrade-circle" stroke="#e5b042" stroke-width="10" fill="transparent" r="70" cx="80" cy="80"/>
+                    </svg>
+                    
+                    <!-- Вращающийся контейнер стрелки -->
+                    <div class="upgrade-pointer" id="upgrade-pointer">
+                        <div class="pointer-arrow"></div>
+                    </div>
+                    
+                    <div class="wheel-center">
+                        <span id="chance-percent">0%</span>
+                        <span class="chance-label">ШАНС</span>
+                    </div>
+                </div>
+
+                <!-- Контроллеры -->
+                <div class="upgrade-controls">
+                    <div class="multiplier-selector">
+                        <button class="mult-btn" data-mult="2" data-chance="50">2x (50%)</button>
+                        <button class="mult-btn" data-mult="5" data-chance="30">5x (30%)</button>
+                        <button class="mult-btn" data-mult="10" data-chance="5">10x (5%)</button>
+                    </div>
+                    <div class="target-potential">Потенциальный выигрыш: <span id="potential-win">0$</span></div>
+                    <button id="upgrade-btn" disabled>Апгрейд</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Инвентарь игрока -->
+        <div class="inventory">
+            <h3>Ваш инвентарь <span style="font-size: 12px; color: #aaa; font-weight: normal;">(Кликни на скин для апгрейда или продай по кнопке)</span></h3>
+            <div class="inventory-items" id="inventory"></div>
+        </div>
+    </main>
+
+    <!-- МОДАЛЬНОЕ ОКНО ВЫИГРЫША -->
+    <div class="win-modal" id="win-modal">
+        <div class="win-modal-content">
+            <h2 class="win-title">ПОЗДРАВЛЯЕМ!</h2>
+            <div class="win-skin-container" id="win-skin-container"></div>
+            <button class="close-modal-btn" id="close-modal-btn">Забрать в инвентарь</button>
+        </div>
+    </div>
+
+    <!-- НОВОЕ: МОДАЛЬНОЕ ОКНО ПРОИГРЫША -->
+    <div class="lose-modal" id="lose-modal">
+        <div class="lose-modal-content">
+            <h2 class="lose-title">УПС... НЕ ПОВЕЗЛО</h2>
+            <div class="lose-icon">❌</div>
+            <p class="lose-text">Повезет в следующий раз!</p>
+            <button class="close-lose-btn" id="close-lose-btn">Попробовать еще раз</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
