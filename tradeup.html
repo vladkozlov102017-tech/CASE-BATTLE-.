@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAS-BETTLE-Владик | Трейд-ап</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">CAS-BETTLE-Владик</div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Кейсы</a>
+            <a href="upgrade.html" class="nav-link">Апгрейд</a>
+            <a href="tradeup.html" class="nav-link active">Трейд-ап</a>
+            <a href="inventory.html" class="nav-link">Инвентарь</a>
+        </nav>
+        <div class="balance">Баланс: <span id="balance-val">1000</span> $ <button class="reset-btn" onclick="resetAccount()">♻</button></div>
+    </header>
+
+    <main>
+        <div class="upgrade-container">
+            <h2>Трейд-ап контракт</h2>
+            <p class="upgrade-hint">Выберите 5+ скинов одного ранга, чтобы получить 1 скин рангом выше</p>
+            <div class="tradeup-workspace">
+                <div class="tradeup-slots" id="tradeup-slots"></div>
+                <div class="tradeup-result" id="tradeup-result">
+                    <div class="slot-placeholder">Результат</div>
+                </div>
+            </div>
+            <div class="tradeup-controls">
+                <div class="tradeup-info" id="tradeup-info">Выбрано: 0/10</div>
+                <button id="tradeup-btn" disabled>Обменять</button>
+            </div>
+        </div>
+
+        <div class="inventory">
+            <h3>Ваш инвентарь <span style="font-size: 12px; color: #aaa; font-weight: normal;">(Кликните на скин чтобы добавить в трейд-ап)</span></h3>
+            <div class="inventory-items" id="tradeup-inventory"></div>
+        </div>
+    </main>
+
+    <div class="win-modal" id="win-modal">
+        <div class="win-modal-content">
+            <h2 class="win-title">ПОЗДРАВЛЯЕМ!</h2>
+            <div class="win-skin-container" id="win-skin-container"></div>
+            <button class="close-modal-btn" id="close-modal-btn">Забрать в инвентарь</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="tradeup.js"></script>
+</body>
+</html>

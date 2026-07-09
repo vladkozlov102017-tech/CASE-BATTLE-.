@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAS-BETTLE-Владик | Апгрейд</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">CAS-BETTLE-Владик</div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Кейсы</a>
+            <a href="upgrade.html" class="nav-link active">Апгрейд</a>
+            <a href="tradeup.html" class="nav-link">Трейд-ап</a>
+            <a href="inventory.html" class="nav-link">Инвентарь</a>
+        </nav>
+        <div class="balance">Баланс: <span id="balance-val">1000</span> $ <button class="reset-btn" onclick="resetAccount()">♻</button></div>
+    </header>
+
+    <main>
+        <div class="upgrade-container">
+            <h2>Апгрейдер скинов</h2>
+            <p class="upgrade-hint">Выберите скин в инвентаре ниже, затем выберите множитель:</p>
+
+            <div class="upgrade-workspace">
+                <div class="upgrade-slot" id="selected-skin-slot">
+                    <div class="slot-placeholder">Выберите скин из инвентаря</div>
+                </div>
+
+                <div class="upgrade-arrow">→</div>
+
+                <div class="upgrade-slot" id="target-skin-slot">
+                    <div class="slot-placeholder">Цель апгрейда</div>
+                </div>
+
+                <div class="upgrade-wheel-wrapper">
+                    <svg class="progress-ring" width="160" height="160">
+                        <circle class="progress-ring__background" stroke="#111116" stroke-width="10" fill="transparent" r="70" cx="80" cy="80"/>
+                        <circle class="progress-ring__circle" id="upgrade-circle" stroke="#e5b042" stroke-width="10" fill="transparent" r="70" cx="80" cy="80"/>
+                    </svg>
+                    <div class="upgrade-pointer" id="upgrade-pointer">
+                        <div class="pointer-arrow"></div>
+                    </div>
+                    <div class="wheel-center">
+                        <span id="chance-percent">0%</span>
+                        <span class="chance-label">ШАНС</span>
+                    </div>
+                </div>
+
+                <div class="upgrade-controls">
+                    <div class="multiplier-selector">
+                        <button class="mult-btn" data-mult="2" data-chance="50">2x (50%)</button>
+                        <button class="mult-btn" data-mult="5" data-chance="30">5x (30%)</button>
+                        <button class="mult-btn" data-mult="10" data-chance="5">10x (5%)</button>
+                    </div>
+                    <div class="target-potential">Потенциальный выигрыш: <span id="potential-win">0$</span></div>
+                    <button id="upgrade-btn" disabled>Апгрейд</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="inventory">
+            <h3>Ваш инвентарь <span style="font-size: 12px; color: #aaa; font-weight: normal;">(Кликните на скин чтобы выбрать для апгрейда)</span></h3>
+            <div class="inventory-items" id="upgrade-inventory"></div>
+        </div>
+    </main>
+
+    <div class="win-modal" id="win-modal">
+        <div class="win-modal-content">
+            <h2 class="win-title">ПОЗДРАВЛЯЕМ!</h2>
+            <div class="win-skin-container" id="win-skin-container"></div>
+            <button class="close-modal-btn" id="close-modal-btn">Забрать в инвентарь</button>
+        </div>
+    </div>
+
+    <div class="lose-modal" id="lose-modal">
+        <div class="lose-modal-content">
+            <h2 class="lose-title">УПС... НЕ ПОВЕЗЛО</h2>
+            <div class="lose-icon">❌</div>
+            <p class="lose-text">Скин сгорел! Повезет в следующий раз!</p>
+            <button class="close-lose-btn" id="close-lose-btn">Попробовать еще раз</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="upgrade.js"></script>
+</body>
+</html>

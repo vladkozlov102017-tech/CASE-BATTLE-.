@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAS-BETTLE-Владик | Инвентарь</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">CAS-BETTLE-Владик</div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Кейсы</a>
+            <a href="upgrade.html" class="nav-link">Апгрейд</a>
+            <a href="tradeup.html" class="nav-link">Трейд-ап</a>
+            <a href="inventory.html" class="nav-link active">Инвентарь</a>
+        </nav>
+        <div class="balance">Баланс: <span id="balance-val">1000</span> $ <button class="reset-btn" onclick="resetAccount()">♻</button></div>
+    </header>
+
+    <main>
+        <div class="stats-bar">
+            <div class="stat-item">Открыто: <span id="stat-cases">0</span></div>
+            <div class="stat-item">Потрачено: <span id="stat-spent">0</span>$</div>
+            <div class="stat-item">Выиграно: <span id="stat-won">0</span>$</div>
+            <div class="stat-item">Продано: <span id="stat-sold">0</span>$</div>
+            <div class="stat-item">Лучший: <span id="stat-best">—</span></div>
+        </div>
+
+        <div class="inventory-page">
+            <h2>Ваш инвентарь</h2>
+            <div class="inventory-controls">
+                <input class="inv-search" id="inv-search" placeholder="Поиск..." oninput="renderFullInventory()">
+                <select class="inv-sort" id="inv-sort" onchange="renderFullInventory()">
+                    <option value="newest">Сначала новые</option>
+                    <option value="price-desc">По цене ↓</option>
+                    <option value="price-asc">По цене ↑</option>
+                    <option value="name">По имени</option>
+                    <option value="rarity">По редкости</option>
+                </select>
+                <button class="mass-select-btn" id="mass-select-toggle" onclick="toggleSelectMode()">Выбрать</button>
+                <div class="rarity-filters" id="rarity-filters">
+                    <button class="rf-btn active" data-rarity="all">Все</button>
+                    <button class="rf-btn" data-rarity="covert" style="--rf-color:#eb4b4b">Covert</button>
+                    <button class="rf-btn" data-rarity="classified" style="--rf-color:#d32ce6">Classified</button>
+                    <button class="rf-btn" data-rarity="restricted" style="--rf-color:#8847ff">Restricted</button>
+                    <button class="rf-btn" data-rarity="mil-spec" style="--rf-color:#4b69ff">Mil-Spec</button>
+                </div>
+            </div>
+            <p class="inventory-info">Всего предметов: <span id="item-count">0</span></p>
+            <div class="mass-sell-bar" id="mass-sell-bar" style="display:none">
+                <span>Выбрано: <strong id="mass-count">0</strong></span>
+                <span>Сумма: <strong id="mass-total">0</strong>$</span>
+                <button class="mass-sell-execute" onclick="executeMassSell()">Продать выбранное</button>
+                <button class="mass-sell-cancel" onclick="toggleSelectMode()">Отмена</button>
+            </div>
+            <div class="inventory-grid" id="inventory-grid"></div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="inventory.js"></script>
+</body>
+</html>

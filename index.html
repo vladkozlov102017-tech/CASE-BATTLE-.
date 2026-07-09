@@ -3,101 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой Симулятор Кейсов и Апгрейдер со Звуком</title>
+    <title>CAS-BETTLE-Владик | Кейсы</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header>
-        <div class="logo">CAS-BATTLE-Владика</div>
-        <div class="balance">Баланс: <span id="balance-val">1000</span> $</div>
+        <div class="logo">CAS-BETTLE-Владик</div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link active">Кейсы</a>
+            <a href="upgrade.html" class="nav-link">Апгрейд</a>
+            <a href="tradeup.html" class="nav-link">Трейд-ап</a>
+            <a href="inventory.html" class="nav-link">Инвентарь</a>
+        </nav>
+        <div class="balance">Баланс: <span id="balance-val">1000</span> $ <button class="reset-btn" onclick="resetAccount()">♻</button></div>
     </header>
 
     <main>
-        <!-- Переключатель кейсов -->
-        <div class="case-selector">
-            <button class="case-tab active" id="btn-case-free">Бесплатный кейс</button>
-            <button class="case-tab" id="btn-case-paid">Платный кейс (50$)</button>
-            <button class="case-tab" id="btn-case-knives">Кейс с ножами (150$)</button>
-            <button class="case-tab" id="btn-case-gloves">Кейс с перчатками (200$)</button>
+        <div class="bonus-row">
+            <div class="bonus-card daily-card" id="daily-card" onclick="clickDaily()">
+                <div class="bonus-icon">🎁</div>
+                <div class="bonus-info">
+                    <div class="bonus-title">Бонус</div>
+                    <div class="bonus-sub" id="daily-status">100$</div>
+                </div>
+            </div>
+            <div class="bonus-card event-card" id="event-card">
+                <div class="bonus-icon">🔥</div>
+                <div class="bonus-info">
+                    <div class="bonus-title">Ивент смены</div>
+                    <div class="bonus-sub" id="event-timer">—</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Контейнер с крутящейся рулеткой -->
+        <div class="case-section-label">✦ ОСНОВНЫЕ КЕЙСЫ</div>
+        <div class="case-selector row-original">
+            <div class="case-card active" data-case="free">
+                <div class="case-card-img" style="background-image:url('images/case_phoenix.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Бесплатный</div>
+                    <div class="case-card-price">0$</div>
+                </div>
+            </div>
+            <div class="case-card" data-case="case200">
+                <div class="case-card-img" style="background-image:url('images/case_spectrum.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Оружейный</div>
+                    <div class="case-card-price">200$</div>
+                </div>
+            </div>
+            <div class="case-card" data-case="case300">
+                <div class="case-card-img" style="background-image:url('images/case_glove.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Перчатки</div>
+                    <div class="case-card-price">300$</div>
+                </div>
+            </div>
+            <div class="case-card" data-case="case500">
+                <div class="case-card-img" style="background-image:url('images/case_breakout.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Ножи</div>
+                    <div class="case-card-price">500$</div>
+                </div>
+            </div>
+            <div class="case-card" data-case="premium">
+                <div class="case-card-img" style="background-image:url('images/case_revolution.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Премиум</div>
+                    <div class="case-card-price">1000$</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-section-label">✦ НОВЫЕ КЕЙСЫ</div>
+        <div class="case-selector row-new">
+            <div class="case-card" data-case="case150">
+                <div class="case-card-img" style="background-image:url('images/case_dangerzone.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Опасная зона</div>
+                    <div class="case-card-price">150$</div>
+                </div>
+            </div>
+            <div class="case-card" data-case="case350">
+                <div class="case-card-img" style="background-image:url('images/case_fracture.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Перелом</div>
+                    <div class="case-card-price">350$</div>
+                </div>
+            </div>
+            <div class="case-card" data-case="case600">
+                <div class="case-card-img" style="background-image:url('images/case_clutch.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Схватка</div>
+                    <div class="case-card-price">600$</div>
+                </div>
+            </div>
+            <div class="case-card" data-case="case800">
+                <div class="case-card-img" style="background-image:url('images/case_prisma.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Призма</div>
+                    <div class="case-card-price">800$</div>
+                </div>
+            </div>
+            <div class="case-card" data-case="case1200">
+                <div class="case-card-img" style="background-image:url('images/case_snakebite.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name">Змеиный укус</div>
+                    <div class="case-card-price">1200$</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-section-label event-section-label">✦ ИВЕНТ</div>
+        <div class="case-selector row-event">
+            <div class="case-card event-case-card" data-case="event" id="event-case-card" style="display:none">
+                <div class="case-card-img" style="background-image:url('images/case_spectrum.png')"></div>
+                <div class="case-card-info">
+                    <div class="case-card-name event-case-label">🔥 Ивент</div>
+                    <div class="case-card-price" id="event-case-price">750$</div>
+                </div>
+            </div>
+        </div>
+
         <div class="case-container">
-            <h2 id="case-title">Оружейный кейс (Бесплатно)</h2>
-            <div class="roulette-wrapper">
-                <div class="selector"></div> <!-- Красная линия по центру -->
-                <div class="roulette" id="roulette"></div>
-            </div>
-            <div class="quantity-selector" id="quantity-selector">
-                <button class="qty-btn active" data-qty="1">1x</button>
-                <button class="qty-btn" data-qty="2">2x</button>
-                <button class="qty-btn" data-qty="3">3x</button>
-                <button class="qty-btn" data-qty="4">4x</button>
-                <button class="qty-btn" data-qty="5">5x</button>
-            </div>
-            <button id="spin-btn">Открыть кейс</button>
-        </div>
-
-        <!-- Раздел Апгрейдера -->
-        <div class="upgrade-container">
-            <h2>Апгрейдер скинов</h2>
-            <p class="upgrade-hint">Выберите скин в инвентаре ниже, затем выберите множитель:</p>
-            
-            <div class="upgrade-workspace">
-                <!-- Слот для выбранного скина -->
-                <div class="upgrade-slot" id="selected-skin-slot">
-                    <div class="slot-placeholder">Выберите скин из инвентаря</div>
-                </div>
-
-                <!-- Колесо апгрейда -->
-                <div class="upgrade-wheel-wrapper">
-                    <svg class="progress-ring" width="160" height="160">
-                        <circle class="progress-ring__background" stroke="#111116" stroke-width="10" fill="transparent" r="70" cx="80" cy="80"/>
-                        <circle class="progress-ring__circle" id="upgrade-circle" stroke="#e5b042" stroke-width="10" fill="transparent" r="70" cx="80" cy="80"/>
-                    </svg>
-                    
-                    <!-- Вращающийся контейнер стрелки -->
-                    <div class="upgrade-pointer" id="upgrade-pointer">
-                        <div class="pointer-arrow"></div>
-                    </div>
-                    
-                    <div class="wheel-center">
-                        <span id="chance-percent">0%</span>
-                        <span class="chance-label">ШАНС</span>
-                    </div>
-                </div>
-
-                <!-- Контроллеры -->
-                <div class="upgrade-controls">
-                    <div class="multiplier-selector">
-                        <button class="mult-btn" data-mult="2" data-chance="50">2x (50%)</button>
-                        <button class="mult-btn" data-mult="5" data-chance="30">5x (30%)</button>
-                        <button class="mult-btn" data-mult="10" data-chance="5">10x (5%)</button>
-                    </div>
-                    <div class="target-potential">Потенциальный выигрыш: <span id="potential-win">0$</span></div>
-                    <button id="upgrade-btn" disabled>Апгрейд</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Инвентарь игрока -->
-        <div class="inventory">
-            <h3>Ваш инвентарь <span style="font-size: 12px; color: #aaa; font-weight: normal;">(Кликни на скин для апгрейда или продай по кнопке)</span></h3>
-            <div class="inventory-items" id="inventory"></div>
+            <h2 id="case-title">Выберите кейс</h2>
+            <p class="case-hint">Нажмите на кейс, чтобы открыть рулетку</p>
         </div>
     </main>
 
-    <!-- МОДАЛЬНОЕ ОКНО ВЫИГРЫША -->
+    <div class="case-modal" id="case-modal">
+        <div class="case-modal-content">
+            <div class="case-modal-header">
+                <h2 id="modal-case-title">Кейс</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-quantity">
+                    <span class="qty-label">Количество:</span>
+                    <div class="qty-btns">
+                        <button class="qty-btn active" data-qty="1">1</button>
+                        <button class="qty-btn" data-qty="2">2</button>
+                        <button class="qty-btn" data-qty="3">3</button>
+                        <button class="qty-btn" data-qty="4">4</button>
+                        <button class="qty-btn" data-qty="5">5</button>
+                    </div>
+                </div>
+                <div class="modal-roulettes" id="modal-roulettes"></div>
+                <div class="case-contents" id="case-contents">
+                    <div class="contents-title">Содержимое кейса:</div>
+                    <div class="contents-grid" id="contents-grid"></div>
+                </div>
+                <div class="modal-footer">
+                    <span class="modal-cost" id="modal-cost">Стоимость: 0$</span>
+                    <button class="modal-spin-btn" id="modal-spin-btn">Открыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="win-modal" id="win-modal">
         <div class="win-modal-content">
             <h2 class="win-title">ПОЗДРАВЛЯЕМ!</h2>
             <div class="win-skin-container" id="win-skin-container"></div>
-            <button class="close-modal-btn" id="close-modal-btn">Забрать в инвентарь</button>
+            <div class="win-total" id="win-total"></div>
+            <div class="win-actions">
+                <span class="win-sum" id="win-sum">0$</span>
+                <button class="sell-all-btn" id="sell-all-btn">Продать все</button>
+                <button class="close-modal-btn" id="close-modal-btn">Забрать в инвентарь</button>
+            </div>
         </div>
     </div>
 
-    <!-- НОВОЕ: МОДАЛЬНОЕ ОКНО ПРОИГРЫША -->
     <div class="lose-modal" id="lose-modal">
         <div class="lose-modal-content">
             <h2 class="lose-title">УПС... НЕ ПОВЕЗЛО</h2>
@@ -108,5 +184,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="cases.js"></script>
 </body>
 </html>
